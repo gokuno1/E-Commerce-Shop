@@ -1,0 +1,88 @@
+package com.example.demo.pojos;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "cartservice")
+public class CartService {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int cartId;
+	
+	@Column(name = "productId")
+	private int productId;
+	
+	@Column(name = "productName")
+	private String productName;
+	
+	@Column(name = "productPrice")
+	private double productPrice;
+	
+	@Column(name = "productQuantity")
+	private int productQuantity;
+	
+	@Column(name = "gender")
+	private String gender;
+	
+	@Column(name = "productImages")
+	private String productImages;
+	
+	@Column(name = "productSize")
+	private String productSize;
+	
+	public CartService() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public CartService(int cartId, int productId, String productName, double productPrice, int productQuantity) {
+		super();
+		this.cartId = cartId;
+		this.productId = productId;
+		this.productName = productName;
+		this.productPrice = productPrice;
+		this.productQuantity = productQuantity;
+	}
+
+	public int getCartId() {
+		return cartId;
+	}
+
+	public void setCartId(int cartId) {
+		this.cartId = cartId;
+	}
+
+	public int getProductId() {
+		return productId;
+	}
+	public void setProductId(int productId) {
+		this.productId = productId;
+	}
+	public String getProductName() {
+		return productName;
+	}
+	public void setProductName(String productName) {
+		this.productName = productName;
+	}
+	public double getProductPrice() {
+		return productPrice;
+	}
+	public void setProductPrice(double productPrice) {
+		this.productPrice = productPrice;
+	}
+	public int getProductQuantity() {
+		return productQuantity;
+	}
+	public void setProductQuantity(int productQuantity) {
+		this.productQuantity = productQuantity;
+	}
+	
+	
+
+}

@@ -1,0 +1,26 @@
+package com.example.demo.pojos;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "cartservice")
+public class CartService {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int id;
+	@Column(name = "productId")
+	private int productId;
+	@Column(name = "productName")
+	private String productName;
+	@Column(name = "productPrice")
+	private double productPrice;
+	@Column(name = "productQuantity")
+	private int productQuantity;
+
+}
