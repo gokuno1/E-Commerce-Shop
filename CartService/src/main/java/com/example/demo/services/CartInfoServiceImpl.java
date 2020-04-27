@@ -2,6 +2,8 @@ package com.example.demo.services;
 
 import java.util.Optional;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,13 +17,25 @@ public class CartInfoServiceImpl implements CartInfoServices {
 	CartRepository repository;
 	
 	@Override
+	@Transactional
 	public boolean addToCart(CartService cart) {
 		// TODO Auto-generated method stub
-		if(repository.save(cart)!=null)
-		{
-			return true;
-		}
-		return false;
+		
+		 CartService temp = repository.getbyproductId(cart.getProductId());
+		 if(temp!=null)
+		 { 
+			 repository.updateCount(cart.getProductId()); 
+		 } 
+		 else 
+		 {
+			 if(repository.save(cart)!=null) 
+			 { 
+				 return true; 
+		     } 
+		 }
+		 return false;
+		
+		
 	}
 
 	@Override
@@ -37,5 +51,19 @@ public class CartInfoServiceImpl implements CartInfoServices {
 		Optional<CartService> temp = repository.findById(cartid);
 		return temp.get();
 	}
+
+	@Override
+	public boolean getByproductId(int productid) {
+		// TODO Auto-generated method stub
+		CartService temp = repository.getbyproductId(productid);
+		if(temp!=null)
+		{
+			return true;
+		}
+		return false;
+	}
+
+	
+
 
 }

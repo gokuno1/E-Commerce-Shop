@@ -1,5 +1,5 @@
 command=C\:\\Users\\Asus\\Desktop\\onlineshop\\pom.xml
-content_assist_lru_history=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?><history maxLHS\="100" maxRHS\="10"/>
+content_assist_lru_history=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?><history maxLHS\="100" maxRHS\="10"><lhs name\="com.example.demo.pojos.CartService"><rhs name\="com.example.demo.pojos.CartService"/></lhs><lhs name\="com.example.demo.pojos.OrderService"><rhs name\="com.example.demo.pojos.OrderService"/></lhs><lhs name\="java.lang.CharSequence"><rhs name\="java.lang.String"/></lhs><lhs name\="com.example.demo.model.PaymentModel"><rhs name\="com.example.demo.model.PaymentModel"/></lhs></history>
 content_assist_number_of_computers=17
 content_assist_proposals_background=255,255,255
 content_assist_proposals_foreground=0,0,0

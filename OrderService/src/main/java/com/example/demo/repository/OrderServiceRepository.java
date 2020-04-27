@@ -6,4 +6,6 @@ import com.example.demo.pojos.OrderService;
 
 public interface OrderServiceRepository extends JpaRepository<OrderService, Integer> {
 
+	
+	
 }

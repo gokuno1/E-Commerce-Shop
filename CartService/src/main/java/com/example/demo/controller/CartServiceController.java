@@ -8,10 +8,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.ProductProxy;
 import com.example.demo.pojos.CartService;
+import com.example.demo.repository.CartRepository;
 import com.example.demo.services.CartInfoServiceImpl;
 
 @RestController
 public class CartServiceController {
+
+	 @Autowired 
+	 CartRepository repo;
+	 
 
 	@Autowired
 	ProductProxy proxy;
@@ -23,8 +28,18 @@ public class CartServiceController {
 	public void addToCart(@PathVariable int id)
 	{
 		CartService response = proxy.getProductById(id);
-		CartService addcart = new CartService(response.getCartId(), id , response.getProductName() ,response.getProductPrice(), response.getProductQuantity(), response.getGender(), response.getProductImages(), response.getProductSize());
-		service.addToCart(addcart);
+		if(service.getByproductId(id))
+		{
+			int quantity = response.getProductQuantity()+1;
+			CartService addcart = new CartService(response.getCartId(), id , response.getProductName() ,response.getProductPrice(), quantity, response.getGender(), response.getProductImages(), response.getProductSize());
+			service.addToCart(addcart);
+		}
+		else
+		{
+			response.setProductQuantity(response.getProductQuantity()+1);
+			CartService addcart = new CartService(response.getCartId(), id , response.getProductName() ,response.getProductPrice(), response.getProductQuantity(), response.getGender(), response.getProductImages(), response.getProductSize());
+			service.addToCart(addcart);
+		}
 	}
 	
 	@DeleteMapping("/cartservice/delete/{cartid}")

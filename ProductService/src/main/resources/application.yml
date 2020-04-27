@@ -15,7 +15,7 @@ spring:
    database-platform: org.hibernate.dialect.MySQL5Dialect
 
 server:
-  port: 8100
+  port: 8085
   
 eureka:
   client:
