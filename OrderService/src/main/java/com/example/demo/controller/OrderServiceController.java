@@ -23,7 +23,10 @@ public class OrderServiceController {
 	public void placeOrder(@PathVariable int cartid)
 	{
 		OrderService response = proxy.getById(cartid);
-		OrderService placeorder = new OrderService(response.getOrderId(), cartid, response.getProductId(), response.getProductName(), response.getProductPrice(), response.getProductQuantity(), response.getGender(), response.getProductImages(), response.getProductSize());
+		double quantity=response.getProductQuantity()*response.getProductPrice();
+		OrderService placeorder = new OrderService(response.getOrderId(), cartid, response.getProductId(), response.getProductName(),
+			response.getProductPrice(), response.getProductQuantity(),
+				response.getGender(), response.getProductImages(), response.getProductSize(), quantity );
 		service.placeOrder(placeorder);
 		proxy.deleteFromCart(cartid);
 	}

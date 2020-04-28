@@ -46,6 +46,9 @@ public class OrderService implements Serializable {
 	@Column(name = "productSize")
 	private String productSize;
 	
+	@Column(name = "totalPrice")
+	private double totalPrice;
+	
 	public OrderService() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -63,6 +66,21 @@ public class OrderService implements Serializable {
 		this.gender = gender;
 		this.productImages = productImages;
 		this.productSize = productSize;
+	}
+
+	public OrderService(int orderId, int cartId, int productId, String productName, double productPrice,
+			int productQuantity, String gender, String productImages, String productSize, double totalPrice) {
+		super();
+		this.orderId = orderId;
+		this.cartId = cartId;
+		this.productId = productId;
+		this.productName = productName;
+		this.productPrice = productPrice;
+		this.productQuantity = productQuantity;
+		this.gender = gender;
+		this.productImages = productImages;
+		this.productSize = productSize;
+		this.totalPrice = totalPrice;
 	}
 
 	public int getOrderId() {
@@ -137,4 +155,11 @@ public class OrderService implements Serializable {
 		this.productSize = productSize;
 	}
 
+	public double getTotalPrice() {
+		return totalPrice;
+	}
+
+	public void setTotalPrice(double totalPrice) {
+		this.totalPrice = totalPrice;
+	}
 }
