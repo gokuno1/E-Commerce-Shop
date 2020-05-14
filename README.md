@@ -35,6 +35,7 @@ There are three services :
       - URL: /orderservice/placeorder/{cartid}
       
   3. Cart Service:
+  In cart service, there are two different model classes where one has cart id and product id and other has product details which are    mapped to cart class using product id as foreign key.
       - In this service there are three api
       - Add to Cart: Data from Product table is added to Cart.
       - It uses Get Mapping
