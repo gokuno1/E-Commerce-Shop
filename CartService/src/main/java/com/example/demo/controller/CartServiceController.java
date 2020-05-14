@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.ProductProxy;
 import com.example.demo.pojos.CartService;
+import com.example.demo.pojos.ProductServiceVO;
 import com.example.demo.repository.CartRepository;
 import com.example.demo.services.CartInfoServiceImpl;
 
@@ -27,17 +28,22 @@ public class CartServiceController {
 	@GetMapping("/cartservice/addtocart/{id}")
 	public void addToCart(@PathVariable int id)
 	{
-		CartService response = proxy.getProductById(id);
+		ProductServiceVO response = proxy.getProductById(id);
+		CartService cart = new CartService();
 		if(service.getByproductId(id))
 		{
-			int quantity = response.getProductQuantity()+1;
-			CartService addcart = new CartService(response.getCartId(), id , response.getProductName() ,response.getProductPrice(), quantity, response.getGender(), response.getProductImages(), response.getProductSize());
-			service.addToCart(addcart);
+			int quantity = cart.getProductQuantity()+1;
+			ProductServiceVO product = new ProductServiceVO(id, response.getProductName(), response.getProductCategory(),
+					response.getProductPrice(), response.getProductSize(), response.getGender(), response.getProductImages());
+			CartService cartservice = new CartService(cart.getCartId(), id, quantity, product);
+			service.addToCart(cartservice);
 		}
 		else
 		{
-			response.setProductQuantity(response.getProductQuantity()+1);
-			CartService addcart = new CartService(response.getCartId(), id , response.getProductName() ,response.getProductPrice(), response.getProductQuantity(), response.getGender(), response.getProductImages(), response.getProductSize());
+			cart.setProductQuantity(cart.getProductQuantity()+1);
+			ProductServiceVO product = new ProductServiceVO(id, response.getProductName(), response.getProductCategory(),
+					response.getProductPrice(), response.getProductSize(), response.getGender(), response.getProductImages());
+			CartService addcart = new CartService(cart.getCartId(), id , cart.getProductQuantity(), product);
 			service.addToCart(addcart);
 		}
 	}

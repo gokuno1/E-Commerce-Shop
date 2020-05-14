@@ -1,10 +1,12 @@
 package com.example.demo.pojos;
 
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Table;
 
 @Entity
@@ -18,42 +20,26 @@ public class CartService {
 	@Column(name = "productId")
 	private int productId;
 	
-	@Column(name = "productName")
-	private String productName;
-	
-	@Column(name = "productPrice")
-	private double productPrice;
-	
 	@Column(name = "productQuantity")
 	private int productQuantity;
 	
-	@Column(name = "gender")
-	private String gender;
-	
-	@Column(name = "productImages")
-	private String productImages;
-	
-	@Column(name = "productSize")
-	private String productSize;
+	@Embedded
+	@JoinColumn(name = "productId", referencedColumnName = "productId", insertable = false, updatable = false)
+	private ProductServiceVO productDetails;
 	
 	public CartService() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	
-	public CartService(int cartId, int productId, String productName, double productPrice, int productQuantity,
-			String gender, String productImages, String productSize) {
+	public CartService(int cartId, int productId, int productQuantity, ProductServiceVO productDetails) {
 		super();
 		this.cartId = cartId;
 		this.productId = productId;
-		this.productName = productName;
-		this.productPrice = productPrice;
 		this.productQuantity = productQuantity;
-		this.gender = gender;
-		this.productImages = productImages;
-		this.productSize = productSize;
+		this.productDetails = productDetails;
 	}
-	
+
 	public int getCartId() {
 		return cartId;
 	}
@@ -70,20 +56,12 @@ public class CartService {
 		this.productId = productId;
 	}
 
-	public String getProductName() {
-		return productName;
+	public ProductServiceVO getProductDetails() {
+		return productDetails;
 	}
 
-	public void setProductName(String productName) {
-		this.productName = productName;
-	}
-
-	public double getProductPrice() {
-		return productPrice;
-	}
-
-	public void setProductPrice(double productPrice) {
-		this.productPrice = productPrice;
+	public void setProductDetails(ProductServiceVO productDetails) {
+		this.productDetails = productDetails;
 	}
 
 	public int getProductQuantity() {
@@ -93,29 +71,7 @@ public class CartService {
 	public void setProductQuantity(int productQuantity) {
 		this.productQuantity = productQuantity;
 	}
-
-	public String getGender() {
-		return gender;
-	}
-
-	public void setGender(String gender) {
-		this.gender = gender;
-	}
-
-	public String getProductImages() {
-		return productImages;
-	}
-
-	public void setProductImages(String productImages) {
-		this.productImages = productImages;
-	}
-
-	public String getProductSize() {
-		return productSize;
-	}
-
-	public void setProductSize(String productSize) {
-		this.productSize = productSize;
-	}
+	
+	
 	
 }

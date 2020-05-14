@@ -3,23 +3,17 @@ package com.example.demo.pojos;
 import java.io.Serializable;
 
 import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.Embeddable;
 
-@Entity
-@Table(name = "productInfo")
-public class ProductService implements Serializable {
+@Embeddable
+public class ProductServiceVO implements Serializable {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name="productId", insertable = false, updatable = false)
 	private int productId;
 	
 	@Column(name = "productName")
@@ -40,12 +34,12 @@ public class ProductService implements Serializable {
 	@Column(name = "productImages")
 	private String productImages;
 	
-	public ProductService() {
+	public ProductServiceVO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	
-	public ProductService(int productId, String productName, String productCategory, double productPrice,
+	public ProductServiceVO(int productId, String productName, String productCategory, double productPrice,
 			String productSize, String gender, String productImages) {
 		super();
 		this.productId = productId;
