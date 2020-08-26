@@ -16,6 +16,7 @@ public class UserInfo {
 	private String first_Name;
 	private String last_Name;
 	private int mobile_no;
+	private String password;
 	
 	public UserInfo() {
 		// TODO Auto-generated constructor stub
@@ -62,4 +63,13 @@ public class UserInfo {
 	public void setMobile_no(int mobile_no) {
 		this.mobile_no = mobile_no;
 	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	
 }
