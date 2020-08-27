@@ -1,16 +1,19 @@
 package com.example.demo.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.ProductProxy;
 import com.example.demo.pojos.CartService;
-import com.example.demo.pojos.ProductServiceVO;
 import com.example.demo.repository.CartRepository;
 import com.example.demo.services.CartInfoServiceImpl;
+import com.example.demo.utils.ResponseUtils;
 
 @RestController
 public class CartServiceController {
@@ -25,26 +28,20 @@ public class CartServiceController {
 	@Autowired
 	CartInfoServiceImpl service;
 	
-	@GetMapping("/cartservice/addtocart/{id}")
-	public void addToCart(@PathVariable int id)
+	@PostMapping("/cartservice/addtocart")
+	public ResponseEntity<CartService> addToCart(@RequestBody CartService cartData)
 	{
-		ProductServiceVO response = proxy.getProductById(id);
-		CartService cart = new CartService();
-		if(service.getByproductId(id))
+		ResponseEntity<CartService> resp = null;
+		CartService cart = service.addToCart(cartData);
+		if(cart!=null)
 		{
-			int quantity = cart.getProductQuantity()+1;
-			ProductServiceVO product = new ProductServiceVO(id, response.getProductName(), response.getProductCategory(),
-					response.getProductPrice(), response.getProductSize(), response.getGender(), response.getProductImages());
-			CartService cartservice = new CartService(cart.getCartId(), id, quantity, product);
-			service.addToCart(cartservice);
+			resp=ResponseUtils.getOKResponse(cart);
+			return resp;
 		}
 		else
 		{
-			cart.setProductQuantity(cart.getProductQuantity()+1);
-			ProductServiceVO product = new ProductServiceVO(id, response.getProductName(), response.getProductCategory(),
-					response.getProductPrice(), response.getProductSize(), response.getGender(), response.getProductImages());
-			CartService addcart = new CartService(cart.getCartId(), id , cart.getProductQuantity(), product);
-			service.addToCart(addcart);
+			resp=ResponseUtils.getBadRequestResponse(cart);
+			return resp;
 		}
 	}
 	

@@ -25,14 +25,14 @@ public class CartService {
 	
 	@Embedded
 	@JoinColumn(name = "productId", referencedColumnName = "productId", insertable = false, updatable = false)
-	private ProductServiceVO productDetails;
+	private ProductData productDetails;
 	
 	public CartService() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	
-	public CartService(int cartId, int productId, int productQuantity, ProductServiceVO productDetails) {
+	public CartService(int cartId, int productId, int productQuantity, ProductData productDetails) {
 		super();
 		this.cartId = cartId;
 		this.productId = productId;
@@ -56,11 +56,11 @@ public class CartService {
 		this.productId = productId;
 	}
 
-	public ProductServiceVO getProductDetails() {
+	public ProductData getProductDetails() {
 		return productDetails;
 	}
 
-	public void setProductDetails(ProductServiceVO productDetails) {
+	public void setProductDetails(ProductData productDetails) {
 		this.productDetails = productDetails;
 	}
 

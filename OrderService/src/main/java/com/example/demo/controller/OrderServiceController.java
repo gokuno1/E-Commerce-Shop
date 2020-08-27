@@ -1,14 +1,18 @@
 package com.example.demo.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.CartProxy;
 import com.example.demo.pojos.OrderService;
 import com.example.demo.services.OrderInfoServiceImpl;
+import com.example.demo.utils.ResponseUtils;
 
 @RestController
 public class OrderServiceController {
@@ -19,16 +23,20 @@ public class OrderServiceController {
 	@Autowired
 	OrderInfoServiceImpl service;
 	
-	@GetMapping("/orderservice/placeorder/{cartid}")
-	public void placeOrder(@PathVariable int cartid)
+	@PostMapping("/orderservice/placeorder")
+	public ResponseEntity<OrderService> placeOrder(@RequestBody OrderService order)
 	{
-		OrderService response = proxy.getById(cartid);
-		double quantity=response.getProductQuantity()*response.getProductPrice();
-		OrderService placeorder = new OrderService(response.getOrderId(), cartid, response.getProductId(), response.getProductName(),
-			response.getProductPrice(), response.getProductQuantity(),
-				response.getGender(), response.getProductImages(), response.getProductSize(), quantity );
-		service.placeOrder(placeorder);
-		proxy.deleteFromCart(cartid);
+		ResponseEntity<OrderService> resp = null;
+		if(service.placeOrder(order))
+		{
+			resp=ResponseUtils.getOKResponse(order);
+			return resp;
+		}
+		else
+		{
+			resp=ResponseUtils.getBadRequestResponse(order);
+			return resp;
+		}
 	}
 	
 	@GetMapping("/orderservice/getbyid/{orderid}")

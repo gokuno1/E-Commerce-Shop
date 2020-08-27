@@ -55,20 +55,6 @@ public class OrderService implements Serializable {
 	}
 
 	public OrderService(int orderId, int cartId, int productId, String productName, double productPrice,
-			int productQuantity, String gender, String productImages, String productSize) {
-		super();
-		this.orderId = orderId;
-		this.cartId = cartId;
-		this.productId = productId;
-		this.productName = productName;
-		this.productPrice = productPrice;
-		this.productQuantity = productQuantity;
-		this.gender = gender;
-		this.productImages = productImages;
-		this.productSize = productSize;
-	}
-
-	public OrderService(int orderId, int cartId, int productId, String productName, double productPrice,
 			int productQuantity, String gender, String productImages, String productSize, double totalPrice) {
 		super();
 		this.orderId = orderId;

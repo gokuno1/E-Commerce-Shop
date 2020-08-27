@@ -6,7 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
 @Embeddable
-public class ProductServiceVO implements Serializable {
+public class ProductData implements Serializable {
 
 	/**
 	 * 
@@ -34,12 +34,15 @@ public class ProductServiceVO implements Serializable {
 	@Column(name = "productImages")
 	private String productImages;
 	
-	public ProductServiceVO() {
+	
+	public ProductData() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+
 	
-	public ProductServiceVO(int productId, String productName, String productCategory, double productPrice,
+	
+	public ProductData(int productId, String productName, String productCategory, double productPrice,
 			String productSize, String gender, String productImages) {
 		super();
 		this.productId = productId;
@@ -50,6 +53,8 @@ public class ProductServiceVO implements Serializable {
 		this.gender = gender;
 		this.productImages = productImages;
 	}
+
+
 
 	public int getProductId() {
 		return productId;

@@ -4,7 +4,7 @@ import com.example.demo.pojos.CartService;
 
 public interface CartInfoServices {
 	
-	public boolean addToCart(CartService cart);
+	public CartService addToCart(CartService cart);
 	public void deleteFromCart(int cartid);
 	public CartService getById(int cartid);
 	public boolean getByproductId(int productid);
