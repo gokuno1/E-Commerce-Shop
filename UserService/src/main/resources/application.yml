@@ -3,12 +3,12 @@ spring:
     name: user-service
 
   datasource:
-    url: jdbc:mysql://localhost:3306/eshop
+    url: ${User.db.rds.url}
     driver-class-name: com.mysql.cj.jdbc.Driver
-    username: root
-    password: root
+    username: ${User.db.rds.username}
+    password: ${User.db.rds.password}
     
 server:
-  port: 8600
+  port: ${User.Service.port}
   
   
