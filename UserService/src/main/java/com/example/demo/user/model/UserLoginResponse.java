@@ -6,7 +6,7 @@ public class UserLoginResponse {
 	
 	private String email;
 	private String sessionId;
-	private int user_id;
+//	private int user_id;
 	private String name;
 	@JsonIgnore
 	private String status;
@@ -31,14 +31,11 @@ public class UserLoginResponse {
 		this.sessionId = sessionId;
 	}
 
-	public int getUser_id() {
-		return user_id;
-	}
-
-	public void setUser_id(int user_id) {
-		this.user_id = user_id;
-	}
-
+	/*
+	 * public int getUser_id() { return user_id; }
+	 * 
+	 * public void setUser_id(int user_id) { this.user_id = user_id; }
+	 */
 	public String getName() {
 		return name;
 	}
