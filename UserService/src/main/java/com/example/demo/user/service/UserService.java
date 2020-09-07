@@ -1,10 +1,13 @@
 package com.example.demo.user.service;
 
+import java.util.List;
+
 import org.springframework.http.ResponseEntity;
 
 import com.example.demo.user.model.UserInfo;
 import com.example.demo.user.model.UserLoginResponse;
 import com.example.demo.user.model.UserProfile;
+
 
 public interface UserService {
 
@@ -25,6 +28,10 @@ public interface UserService {
 	public UserInfo deleteUser(String email);
 	
 	public ResponseEntity<UserInfo> forgotPassword(UserLoginResponse userCredentials);
+	
+	public List<UserProfile> updateProfileDetails(String emailId, String fName, String lName, double mobileNo, int userId);
+	
+	public void scheduledUpdate(UserInfo userinfo);
 	
 	//Can add OTP methods
 }
