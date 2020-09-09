@@ -6,8 +6,12 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.pojos.Product;
+import com.example.demo.pojos.ProductCategory;
 import com.example.demo.pojos.ProductService;
+import com.example.demo.pojos.ProductSize;
 import com.example.demo.repository.ProductServiceRepository;
+import com.example.demo.repository.SizeRepository;
 
 @Service
 public class ProductInfoServiceImpl implements ProductInfoService {
@@ -15,10 +19,24 @@ public class ProductInfoServiceImpl implements ProductInfoService {
 	@Autowired
 	ProductServiceRepository repository;
 	
+	@Autowired
+	SizeRepository sizeRepository;
+	
 	@Override
-	public void addProduct(ProductService product) {
+	public void addProduct(Product product) {
 		// TODO Auto-generated method stub
-		repository.save(product);
+		ProductSize size= new ProductSize();
+		size = (ProductSize) sizeRepository.findBySizeValue(product.getCategoryName());
+		
+		ProductService productDetails = new ProductService();
+		productDetails.setProductName(product.getProductName());
+		productDetails.setSizeId(size.getSizeId());
+		productDetails.setCategoryId(1);
+		productDetails.setProductImages(product.getProductImages());
+		productDetails.setProductPrice(product.getProductPrice());
+		productDetails.setGender(product.getGender());
+		
+		repository.save(productDetails);
 	}
 
 	@Override
@@ -65,6 +83,13 @@ public class ProductInfoServiceImpl implements ProductInfoService {
 	public List<ProductService> getByGender(String gender) {
 		// TODO Auto-generated method stub
 		return repository.getByGender(gender);
+	}
+
+	@Override
+	public List<ProductService> getBySizeId(ProductService sizeId) {
+		// TODO Auto-generated method stub
+		//String sizeValue = size.findBySizeId(sizeId.getSizeId());
+		return null;
 	}
 
 }

@@ -25,7 +25,7 @@ public class ProductService {
 	private double productPrice;
 	
 	@Column(name = "sizeId")
-	private int sizeId;
+	private ProductService sizeId;
 	
 	@Column(name = "gender")
 	private String gender;
@@ -37,44 +37,6 @@ public class ProductService {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
-	public ProductService(int productId, String productName, int categoryId, double productPrice, int sizeId,
-			String gender, String productImages) {
-		super();
-		this.productId = productId;
-		this.productName = productName;
-		this.categoryId = categoryId;
-		this.productPrice = productPrice;
-		this.sizeId = sizeId;
-		this.gender = gender;
-		this.productImages = productImages;
-	}
-
-
-
-	public int getCategoryId() {
-		return categoryId;
-	}
-
-
-
-	public void setCategoryId(int categoryId) {
-		this.categoryId = categoryId;
-	}
-
-
-
-	public int getSizeId() {
-		return sizeId;
-	}
-
-
-
-	public void setSizeId(int sizeId) {
-		this.sizeId = sizeId;
-	}
-
-
 
 	public int getProductId() {
 		return productId;
@@ -92,12 +54,28 @@ public class ProductService {
 		this.productName = productName;
 	}
 
+	public int getCategoryId() {
+		return categoryId;
+	}
+
+	public void setCategoryId(int categoryId) {
+		this.categoryId = categoryId;
+	}
+
 	public double getProductPrice() {
 		return productPrice;
 	}
 
 	public void setProductPrice(double productPrice) {
 		this.productPrice = productPrice;
+	}
+
+	public ProductService getSizeId() {
+		return sizeId;
+	}
+
+	public void setSizeId(ProductService sizeId) {
+		this.sizeId = sizeId;
 	}
 
 	public String getGender() {
@@ -115,7 +93,6 @@ public class ProductService {
 	public void setProductImages(String productImages) {
 		this.productImages = productImages;
 	}
-
 	
 	
 	

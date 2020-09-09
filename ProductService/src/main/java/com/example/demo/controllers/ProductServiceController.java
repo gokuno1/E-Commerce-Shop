@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.pojos.Product;
 import com.example.demo.pojos.ProductService;
 import com.example.demo.services.ProductInfoServiceImpl;
 
@@ -23,7 +24,7 @@ public class ProductServiceController {
 	ProductInfoServiceImpl service;
 	
 	@PostMapping("/addproduct")
-	public void addProduct(@RequestBody ProductService product)
+	public void addProduct(@RequestBody Product product)
 	{
 		service.addProduct(product);
 	}
