@@ -1,15 +1,6 @@
 package com.example.demo.user.service;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
-import javax.persistence.EntityManager;
-import javax.persistence.Query;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,8 +9,6 @@ import org.springframework.stereotype.Service;
 import com.example.demo.user.model.UserInfo;
 import com.example.demo.user.model.UserLoginResponse;
 import com.example.demo.user.model.UserProfile;
-import com.example.demo.user.model.UserScheduler;
-import com.example.demo.user.repository.SchedulerCOunt;
 import com.example.demo.user.repository.UserRepository;
 import com.example.demo.utils.BasicEncryption;
 
@@ -32,14 +21,13 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	private UserRepository repository;
 	
-	@Autowired
-	private UserInfo userinfo;
-	
-	@Autowired
-	private EntityManager entityManager;
-	
-	@Autowired(required = true)
-	private SchedulerCOunt usercount;
+	/*
+	 * @Autowired private UserInfo userinfo;
+	 * 
+	 * @Autowired private EntityManager entityManager;
+	 * 
+	 * @Autowired(required = true) private SchedulerCOunt usercount;
+	 */
 	
 	@Override
 	public UserInfo addNewUser(UserInfo userinfo) {
@@ -136,55 +124,40 @@ public class UserServiceImpl implements UserService {
 		return null;
 	}
 
-	@Override
-	public List<UserProfile> updateProfileDetails(String emailId, String fName, String lName, double mobileNo,
-			int userId) {
-		// TODO Auto-generated method stub
-		String fquery="update userprofile set";
-		StringBuffer rquery = new StringBuffer();
-		String compQuery = new String();
-		
-		Map<String,String> map = new HashMap<>();
-		
-		String bquery="where user_id="+":userId";
-		map.put("userId", String.valueOf(userId));
-		
-		if(emailId!=null)
-		{
-			 compQuery = "email_id="+":emailId";
-			 rquery.append(compQuery);
-			 map.put("emailId", String.valueOf(emailId));
-		}
-		if(fName!=null)
-		{
-			compQuery = "first_name="+":fName";
-			rquery.append(compQuery);
-			map.put("fName", String.valueOf(fName));
-		}
-		if(lName!=null)
-		{
-			compQuery = "last_name="+":lName";
-			rquery.append(compQuery);
-			map.put("lName", String.valueOf(lName));
-		}
-		if(mobileNo!=0)
-		{
-			compQuery = "mobile_no="+":mobileNo";
-			rquery.append(compQuery);
-			map.put("mobileNo", String.valueOf(mobileNo));
-		}
-		
-		Query query = entityManager.createNativeQuery(fquery + rquery + bquery);
-		map.entrySet().stream().forEach(mapobj->query.setParameter(mapobj.getKey(), mapobj.getValue()));
-		
-		List<UserProfile> result = query.getResultList();
-		return result;
-	}
-
-	@Override
-	public void scheduledUpdate(UserInfo userinfo) {
-		// TODO Auto-generated method stub
+	/*
+	 * @Override public List<UserProfile> updateProfileDetails(String emailId,
+	 * String fName, String lName, double mobileNo, int userId) {
+	 */
 		/*
+		 * // TODO Auto-generated method stub String fquery="update userprofile set";
+		 * StringBuffer rquery = new StringBuffer(); String compQuery = new String();
+		 * 
+		 * Map<String,String> map = new HashMap<>();
+		 * 
+		 * String bquery="where user_id="+":userId"; map.put("userId",
+		 * String.valueOf(userId));
+		 * 
+		 * if(emailId!=null) { compQuery = "email_id="+":emailId";
+		 * rquery.append(compQuery); map.put("emailId", String.valueOf(emailId)); }
+		 * if(fName!=null) { compQuery = "first_name="+":fName";
+		 * rquery.append(compQuery); map.put("fName", String.valueOf(fName)); }
+		 * if(lName!=null) { compQuery = "last_name="+":lName";
+		 * rquery.append(compQuery); map.put("lName", String.valueOf(lName)); }
+		 * if(mobileNo!=0) { compQuery = "mobile_no="+":mobileNo";
+		 * rquery.append(compQuery); map.put("mobileNo", String.valueOf(mobileNo)); }
+		 * 
+		 * Query query = entityManager.createNativeQuery(fquery + rquery + bquery);
+		 * map.entrySet().stream().forEach(mapobj->query.setParameter(mapobj.getKey(),
+		 * mapobj.getValue()));
+		 * 
+		 * List<UserProfile> result = query.getResultList(); return result;
+		 */
+//	}
+
+/*
+ * @Override public void scheduledUpdate(UserInfo userinfo) { // TODO
+ * Auto-generated method stub
+ */		/*
 		 * long start = 1; //if big data long end = 1000; long count = 0; long mode= 0;
 		 * UserScheduler counter = usercount.userCounter(); count =
 		 * counter.getCounter(); if(count!=0) { mode=count%1000; if(mode!=0) { count =
@@ -192,7 +165,7 @@ public class UserServiceImpl implements UserService {
 		 * repository. } }
 		 */
 		
-	}
+//	}
 
 	
 }
