@@ -10,6 +10,7 @@ import com.example.demo.pojos.Product;
 import com.example.demo.pojos.ProductCategory;
 import com.example.demo.pojos.ProductService;
 import com.example.demo.pojos.ProductSize;
+import com.example.demo.repository.CategoryRepository;
 import com.example.demo.repository.ProductServiceRepository;
 import com.example.demo.repository.SizeRepository;
 
@@ -22,21 +23,26 @@ public class ProductInfoServiceImpl implements ProductInfoService {
 	@Autowired
 	SizeRepository sizeRepository;
 	
+	@Autowired
+	CategoryRepository catRepository;
+	
 	@Override
 	public void addProduct(Product product) {
 		// TODO Auto-generated method stub
-		ProductSize size= new ProductSize();
-		size = (ProductSize) sizeRepository.findBySizeValue(product.getCategoryName());
 		
-		ProductService productDetails = new ProductService();
-		productDetails.setProductName(product.getProductName());
-		productDetails.setSizeId(size.getSizeId());
-		productDetails.setCategoryId(1);
-		productDetails.setProductImages(product.getProductImages());
-		productDetails.setProductPrice(product.getProductPrice());
-		productDetails.setGender(product.getGender());
-		
-		repository.save(productDetails);
+		  ProductSize size= sizeRepository.findBySizeValue(product.getSizeName());
+		  ProductCategory category = catRepository.getByCategoryName(product.getCategoryName());
+		  
+		  ProductService productDetails = new ProductService();
+		  productDetails.setProductName(product.getProductName());
+		  productDetails.setCategoryId(category.getCategoryId());
+		  productDetails.setSizeId(size.getSizeId());
+		  productDetails.setProductImages(product.getProductImages());
+		  productDetails.setProductPrice(product.getProductPrice());
+		  productDetails.setGender(product.getGender());
+		  
+		  repository.save(productDetails);
+		 
 	}
 
 	@Override
@@ -75,14 +81,14 @@ public class ProductInfoServiceImpl implements ProductInfoService {
 	@Override
 	public List<ProductService> getByCategory(String productCategory) {
 		// TODO Auto-generated method stub
-		return repository.getByCategory(productCategory);
+		return null;//repository.getByCategory(productCategory);
 		
 	}
 
 	@Override
 	public List<ProductService> getByGender(String gender) {
 		// TODO Auto-generated method stub
-		return repository.getByGender(gender);
+		return null; //repository.getByGender(gender);
 	}
 
 	@Override

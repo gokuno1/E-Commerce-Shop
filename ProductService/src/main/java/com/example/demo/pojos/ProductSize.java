@@ -1,47 +1,65 @@
 package com.example.demo.pojos;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "productSizeValue")
 public class ProductSize {
 	
-	private int product_size_id;
-	
-	private ProductService sizeId;
-	
-	private String sizeValue;
-	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	public int getProduct_size_id() {
-		return product_size_id;
-	}
-	public void setProduct_size_id(int product_size_id) {
-		this.product_size_id = product_size_id;
-	}
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "sizeId")
-	public ProductService getSizeId() {
-		return sizeId;
-	}
-	public void setSizeId(ProductService sizeId) {
-		this.sizeId = sizeId;
-	}
-	public String getSizeValue() {
-		return sizeValue;
-	}
-	public void setSizeValue(String sizeValue) {
-		this.sizeValue = sizeValue;
+	private int sizeId;
+	
+	private String sizeName;
+
+	
+	
+	public ProductSize() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
+
+
+	public int getSizeId() {
+		return sizeId;
+	}
+
+
+
+	public void setSizeId(int sizeId) {
+		this.sizeId = sizeId;
+	}
+
+
+
+	public String getSizeName() {
+		return sizeName;
+	}
+
+
+
+	public void setSizeName(String sizeName) {
+		this.sizeName = sizeName;
+	}
+	
+	
+
+	/*
+	 * @Id
+	 * 
+	 * @GeneratedValue(strategy = GenerationType.IDENTITY)
+	 * 
+	 * @Column(name = "sizeId") public int getSizeId() { return sizeId; }
+	 * 
+	 * public void setSizeId(int sizeId) { this.sizeId = sizeId; }
+	 * 
+	 * public String getSizeName() { return sizeName; }
+	 * 
+	 * public void setSizeName(String sizeName) { this.sizeName = sizeName; }
+	 */
+	
 	
 	
 

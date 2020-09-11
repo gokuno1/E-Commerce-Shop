@@ -1,10 +1,10 @@
 package com.example.demo.pojos;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -12,24 +12,63 @@ import javax.persistence.Table;
 public class ProductCategory {
 	
 	@Id
-	private int productCategoryId;
-	private ProductService categoryId;
-	private String productCategory;
+	private int categoryId;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="productCategory")
-	public ProductService getCategoryId() {
+	private String categoryName;
+
+	
+	
+	public ProductCategory() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+
+
+	public int getCategoryId() {
 		return categoryId;
 	}
-	public void setCategoryId(ProductService categoryId) {
+
+
+
+	public void setCategoryId(int categoryId) {
 		this.categoryId = categoryId;
 	}
-	public String getProductCategory() {
-		return productCategory;
+
+
+
+	public String getCategoryName() {
+		return categoryName;
 	}
-	public void setProductCategory(String productCategory) {
-		this.productCategory = productCategory;
+
+
+
+	public void setCategoryName(String categoryName) {
+		this.categoryName = categoryName;
 	}
+
+
+
+	
+	
+
+	/*
+	 * @Id
+	 * 
+	 * @GeneratedValue(strategy = GenerationType.IDENTITY)
+	 * 
+	 * @Column(name = "categoryId") public int getCategoryId() { return categoryId;
+	 * }
+	 * 
+	 * public void setCategoryId(int categoryId) { this.categoryId = categoryId; }
+	 * 
+	 * public String getCategoryName() { return CategoryName; }
+	 * 
+	 * public void setCategoryName(String categoryName) { CategoryName =
+	 * categoryName; }
+	 */
+	
+	
 	
 	
 

@@ -12,9 +12,12 @@ import com.example.demo.pojos.ProductService;
 @Repository
 public interface ProductServiceRepository extends JpaRepository<ProductService, Integer> {
 
-	@Query("select p from ProductService p where p.gender= :gender")
-	public List<ProductService> getByGender(@Param("gender")String gender);
-	
-	@Query("select u from ProductService u where u.productCategory= :productCategory")
-	public List<ProductService> getByCategory(@Param("productCategory")String productCategory);
+	/*
+	 * @Query("select p from ProductService p where p.gender= :gender") public
+	 * List<ProductService> getByGender(@Param("gender")String gender);
+	 * 
+	 * @Query("select u from ProductService u where u.productCategory= :productCategory"
+	 * ) public List<ProductService> getByCategory(@Param("productCategory")String
+	 * productCategory);
+	 */
 }

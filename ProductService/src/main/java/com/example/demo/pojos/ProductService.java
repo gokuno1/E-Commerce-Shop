@@ -2,9 +2,12 @@ package com.example.demo.pojos;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -18,15 +21,21 @@ public class ProductService {
 	@Column(name = "productName")
 	private String productName;
 	
+	/*
+	 * @Column(name = "categoryId") private ProductCategory categoryId;
+	 */
 	@Column(name = "categoryId")
 	private int categoryId;
 	
 	@Column(name = "productPrice")
 	private double productPrice;
 	
+	/*
+	 * @Column(name = "sizeId") private ProductSize sizeId;
+	 */
 	@Column(name = "sizeId")
-	private ProductService sizeId;
-	
+	private int sizeId;
+		
 	@Column(name = "gender")
 	private String gender;
 	
@@ -54,6 +63,21 @@ public class ProductService {
 		this.productName = productName;
 	}
 
+	/*
+	 * @ManyToOne(fetch = FetchType.LAZY)
+	 * 
+	 * @JoinColumn(name = "categoryId") public ProductCategory getCategoryId() {
+	 * return categoryId; }
+	 * 
+	 * public void setCategoryId(ProductCategory categoryId) { this.categoryId =
+	 * categoryId; }
+	 */
+	
+
+	public double getProductPrice() {
+		return productPrice;
+	}
+
 	public int getCategoryId() {
 		return categoryId;
 	}
@@ -62,24 +86,29 @@ public class ProductService {
 		this.categoryId = categoryId;
 	}
 
-	public double getProductPrice() {
-		return productPrice;
-	}
-
 	public void setProductPrice(double productPrice) {
 		this.productPrice = productPrice;
 	}
 
-	public ProductService getSizeId() {
+	/*
+	 * @ManyToOne(fetch = FetchType.LAZY)
+	 * 
+	 * @JoinColumn(name = "sizeId") public ProductSize getSizeId() { return sizeId;
+	 * }
+	 * 
+	 * public void setSizeId(ProductSize sizeId) { this.sizeId = sizeId; }
+	 */
+	
+	public String getGender() {
+		return gender;
+	}
+
+	public int getSizeId() {
 		return sizeId;
 	}
 
-	public void setSizeId(ProductService sizeId) {
+	public void setSizeId(int sizeId) {
 		this.sizeId = sizeId;
-	}
-
-	public String getGender() {
-		return gender;
 	}
 
 	public void setGender(String gender) {
