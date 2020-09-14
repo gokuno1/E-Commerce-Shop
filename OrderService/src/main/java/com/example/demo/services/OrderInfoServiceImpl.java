@@ -5,38 +5,43 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.CartProxy;
+import com.example.demo.comm.CartFeignContoller;
+import com.example.demo.pojos.CartServiceVO;
 import com.example.demo.pojos.OrderService;
 import com.example.demo.repository.OrderServiceRepository;
 
 @Service
 public class OrderInfoServiceImpl implements OrderInfoService {
 
+	/*
+	 * @Autowired CartProxy proxy;
+	 */
+	
 	@Autowired
-	CartProxy proxy;
+	CartFeignContoller feignCart;
 	
 	@Autowired
 	OrderServiceRepository repository;
 	
 	@Override
-	public boolean placeOrder(OrderService order) {
+	public boolean placeOrder(int cartId) {
 		// TODO Auto-generated method stub
-		OrderService response = proxy.getById(order.getCartId());
-		double quantity=response.getProductQuantity()*response.getProductPrice();
+		CartServiceVO response = feignCart.getById(cartId);
+		double quantity=response.getProductQuantity()*response.getProductDetails().getProductPrice();
 		OrderService placeorder = new OrderService();
-		placeorder.setCartId(order.getCartId());
-		placeorder.setOrderId(order.getOrderId());
-		placeorder.setGender(order.getGender());
-		placeorder.setProductId(order.getProductId());
-		placeorder.setProductImages(order.getProductImages());
-		placeorder.setProductName(order.getProductName());
-		placeorder.setProductPrice(order.getProductPrice());
-		placeorder.setProductQuantity(order.getProductQuantity());
-		placeorder.setProductSize(order.getProductSize());
+		placeorder.setCartId(cartId);
+		placeorder.setGender(response.getProductDetails().getGender());
+		placeorder.setProductId(response.getProductId());
+		placeorder.setProductImages(response.getProductDetails().getProductImages());
+		placeorder.setProductName(response.getProductDetails().getProductName());
+		placeorder.setProductPrice(response.getProductDetails().getProductPrice());
+		placeorder.setProductQuantity(response.getProductQuantity());
+		placeorder.setProductSize(response.getProductDetails().getProductSize());
 		placeorder.setTotalPrice(quantity);
+		placeorder.setStatus("Order Placed");
 		if(repository.save(placeorder)!=null)
 		{
-			proxy.deleteFromCart(order.getCartId());
+			feignCart.deleteFromCart(cartId);
 			return true;
 		}
 		return false;
@@ -53,6 +58,12 @@ public class OrderInfoServiceImpl implements OrderInfoService {
 	public void deletebyid(int orderid) {
 		// TODO Auto-generated method stub
 		repository.deleteById(orderid);
+	}
+
+	@Override
+	public OrderService updateOrder(int orderId, OrderService order) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

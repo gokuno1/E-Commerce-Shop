@@ -49,6 +49,9 @@ public class OrderService implements Serializable {
 	@Column(name = "totalPrice")
 	private double totalPrice;
 	
+	@Column(name="status")
+	private String status;
+	
 	public OrderService() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -67,6 +70,14 @@ public class OrderService implements Serializable {
 		this.productImages = productImages;
 		this.productSize = productSize;
 		this.totalPrice = totalPrice;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 	public int getOrderId() {
