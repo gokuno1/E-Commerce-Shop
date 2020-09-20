@@ -7,11 +7,17 @@ pipeline{
 			
 			steps{
 				sh 'mvn package'
-			
 				}
 		
 			}
-	
+			
+		stage("Image Creation")
+		{
+			steps
+			{
+				sh 'docker build -t product-service .'
+			}
+		}
 		}
 	}
 }
