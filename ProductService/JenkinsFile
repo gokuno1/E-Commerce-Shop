@@ -1,21 +1,23 @@
-pipeline{
-	
-agent any
-	
-stages{
-	stage('build'){
+pipeline {
+    agent any
 
-		steps{
-			sh 'mvn package'
-			}
-	}
-	stage('Image Creation'){
-	
-		steps{
-			sh 'docker build -t product-service .'
-			}
-		}
-	}
-}
-
+    stages {
+        stage('Build') {
+            steps {
+            	sh 'mvn clean package'
+                echo 'mvn clean package'
+            }
+        }
+        stage('Image') {
+            steps {
+            	sh 'docker build -t user-service .'
+                echo 'Image creation'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying....'
+            }
+        }
+    }
 }
