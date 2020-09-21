@@ -10,7 +10,7 @@ pipeline {
         }
         stage('Image') {
             steps {
-            	sh 'docker build -t user-service .'
+            	sh 'docker build -t product-service .'
                 echo 'Image creation'
             }
         }
