@@ -1,14 +1,24 @@
 package com.example.demo.user.service;
 
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.user.model.UserInfo;
 import com.example.demo.user.model.UserLoginResponse;
 import com.example.demo.user.model.UserProfile;
+import com.example.demo.user.model.UserScheduler;
+import com.example.demo.user.repository.SchedulerCOunt;
+import com.example.demo.user.repository.UserProfileRepository;
 import com.example.demo.user.repository.UserRepository;
 import com.example.demo.utils.BasicEncryption;
 
@@ -20,6 +30,12 @@ public class UserServiceImpl implements UserService {
 	
 	@Autowired
 	private UserRepository repository;
+	
+	@Autowired
+	private UserProfileRepository profileRepository;
+	
+	@Autowired 
+	private SchedulerCOunt usercount;
 	
 	/*
 	 * @Autowired private UserInfo userinfo;
@@ -122,6 +138,37 @@ public class UserServiceImpl implements UserService {
 	public ResponseEntity<UserInfo> forgotPassword(UserLoginResponse userCredentials) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public void scheduledUpdate() {
+		// TODO Auto-generated method stub
+	  UserScheduler counter = usercount.userCounter();
+	  long start=1;
+	  long end =3;
+	  long count = counter.getCounter();
+	  
+	  if(count!=0)
+	  {
+		  List<UserInfo> users = new ArrayList<UserInfo>(); 
+		  do
+		  {
+			  users = repository.findUserByRownum(start, end);
+			  start=end+1;
+			  System.out.println("%%%%%%%%%%%%"+start+"%%%%%%%%%%");
+			  count=count-end;
+			  System.out.println("%%%%%%%%%%%%"+count+"%%%%%%%%%%");
+		  }while(count<0);
+		  
+		  users.stream().forEach(userDetails->{
+			  
+			  profileRepository.updateUserProfile(userDetails.getUser_id(), 
+					  userDetails.getEmail_id(), userDetails.getFirst_Name(),
+					  userDetails.getLast_Name(), userDetails.getMobile_no());
+		  });
+		  
+	  }
+		
 	}
 
 	/*

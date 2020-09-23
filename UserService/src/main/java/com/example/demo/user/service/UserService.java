@@ -29,7 +29,7 @@ public interface UserService {
 	
 //	public List<UserProfile> updateProfileDetails(String emailId, String fName, String lName, double mobileNo, int userId);
 	
-	//public void scheduledUpdate(UserInfo userinfo);
+	public void scheduledUpdate();
 	
 	//Can add OTP methods
 }
