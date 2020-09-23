@@ -1,6 +1,6 @@
 package com.example.demo.services;
 
-import com.example.demo.pojos.OrderService;
+import com.example.demo.model.OrderService;
 
 public interface OrderInfoService {
 

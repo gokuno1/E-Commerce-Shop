@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.ProductProxy;
-import com.example.demo.pojos.CartService;
+import com.example.demo.model.CartService;
 import com.example.demo.repository.CartRepository;
 import com.example.demo.services.CartInfoServiceImpl;
 import com.example.demo.utils.ResponseUtils;

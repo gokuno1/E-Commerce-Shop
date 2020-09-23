@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import com.example.demo.pojos.CartServiceVO;
+import com.example.demo.model.CartServiceVO;
 
 @FeignClient(value = "cart-service")
 public interface CartFeignContoller {

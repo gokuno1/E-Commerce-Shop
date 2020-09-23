@@ -1,6 +1,6 @@
 package com.example.demo.services;
 
-import com.example.demo.pojos.CartService;
+import com.example.demo.model.CartService;
 
 public interface CartInfoServices {
 	

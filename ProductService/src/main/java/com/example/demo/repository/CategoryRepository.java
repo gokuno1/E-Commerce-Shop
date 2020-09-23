@@ -4,7 +4,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import com.example.demo.pojos.ProductCategory;
+import com.example.demo.model.ProductCategory;
 
 @Repository
 public interface CategoryRepository extends CrudRepository<ProductCategory, Integer>{

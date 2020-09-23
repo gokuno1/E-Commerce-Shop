@@ -6,10 +6,10 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.pojos.Product;
-import com.example.demo.pojos.ProductCategory;
-import com.example.demo.pojos.ProductService;
-import com.example.demo.pojos.ProductSize;
+import com.example.demo.model.Product;
+import com.example.demo.model.ProductCategory;
+import com.example.demo.model.ProductService;
+import com.example.demo.model.ProductSize;
 import com.example.demo.repository.CategoryRepository;
 import com.example.demo.repository.ProductServiceRepository;
 import com.example.demo.repository.SizeRepository;

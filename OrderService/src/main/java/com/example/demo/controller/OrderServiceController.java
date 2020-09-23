@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.CartProxy;
-import com.example.demo.pojos.OrderService;
+import com.example.demo.model.OrderService;
 import com.example.demo.services.OrderInfoServiceImpl;
 import com.example.demo.utils.ResponseUtils;
 

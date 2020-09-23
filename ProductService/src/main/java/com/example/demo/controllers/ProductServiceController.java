@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.pojos.Product;
-import com.example.demo.pojos.ProductService;
+import com.example.demo.model.Product;
+import com.example.demo.model.ProductService;
 import com.example.demo.services.ProductInfoServiceImpl;
 
 @RestController

@@ -1,4 +1,4 @@
-package com.example.demo.pojos;
+package com.example.demo.model;
 
 import javax.persistence.Column;
 import javax.persistence.Embedded;

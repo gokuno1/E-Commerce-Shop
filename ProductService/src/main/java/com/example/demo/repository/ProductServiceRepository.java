@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import com.example.demo.pojos.ProductService;
+import com.example.demo.model.ProductService;
 
 @Repository
 public interface ProductServiceRepository extends JpaRepository<ProductService, Integer> {

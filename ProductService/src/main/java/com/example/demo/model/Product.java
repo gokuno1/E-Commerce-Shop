@@ -1,4 +1,4 @@
-package com.example.demo.pojos;
+package com.example.demo.model;
 
 public class Product {
 	

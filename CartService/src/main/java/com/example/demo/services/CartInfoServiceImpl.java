@@ -8,8 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.ProductProxy;
-import com.example.demo.pojos.CartService;
-import com.example.demo.pojos.ProductData;
+import com.example.demo.model.CartService;
+import com.example.demo.model.ProductData;
 import com.example.demo.repository.CartRepository;
 
 @Service

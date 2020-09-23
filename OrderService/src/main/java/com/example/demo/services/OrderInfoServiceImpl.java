@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.comm.CartFeignContoller;
-import com.example.demo.pojos.CartServiceVO;
-import com.example.demo.pojos.OrderService;
+import com.example.demo.model.CartServiceVO;
+import com.example.demo.model.OrderService;
 import com.example.demo.repository.OrderServiceRepository;
 
 @Service

@@ -1,60 +1,20 @@
-package com.example.demo.pojos;
+package com.example.demo.model;
 
-import java.io.Serializable;
-
-import javax.persistence.Column;
-import javax.persistence.Embeddable;
-
-@Embeddable
-public class ProductData implements Serializable {
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-
-	@Column(name="productId", insertable = false, updatable = false)
+public class ProductDataVO {
+	
 	private int productId;
 	
-	@Column(name = "productName")
 	private String productName;
 	
-	@Column(name = "productCategory")
 	private String productCategory;
 	
-	@Column(name = "productPrice")
 	private double productPrice;
 	
-	@Column(name = "productSize")
 	private String productSize;
 	
-	@Column(name = "gender")
 	private String gender;
 	
-	@Column(name = "productImages")
 	private String productImages;
-	
-	
-	public ProductData() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	
-	
-	public ProductData(int productId, String productName, String productCategory, double productPrice,
-			String productSize, String gender, String productImages) {
-		super();
-		this.productId = productId;
-		this.productName = productName;
-		this.productCategory = productCategory;
-		this.productPrice = productPrice;
-		this.productSize = productSize;
-		this.gender = gender;
-		this.productImages = productImages;
-	}
-
-
 
 	public int getProductId() {
 		return productId;
@@ -112,8 +72,5 @@ public class ProductData implements Serializable {
 		this.productImages = productImages;
 	}
 
-	
-	
-	
 	
 }

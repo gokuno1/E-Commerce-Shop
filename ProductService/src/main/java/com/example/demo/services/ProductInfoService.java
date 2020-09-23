@@ -2,8 +2,8 @@ package com.example.demo.services;
 
 import java.util.List;
 
-import com.example.demo.pojos.Product;
-import com.example.demo.pojos.ProductService;
+import com.example.demo.model.Product;
+import com.example.demo.model.ProductService;
 
 public interface ProductInfoService {
 

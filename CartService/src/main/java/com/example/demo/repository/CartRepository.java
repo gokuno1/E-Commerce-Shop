@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import com.example.demo.pojos.CartService;
+import com.example.demo.model.CartService;
 
 @Repository
 public interface CartRepository extends JpaRepository<CartService, Integer> {
