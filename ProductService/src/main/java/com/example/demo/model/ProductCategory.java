@@ -12,6 +12,7 @@ import javax.persistence.Table;
 public class ProductCategory {
 	
 	@Id
+	@Column(name = "categoryId")
 	private int categoryId;
 	
 	private String categoryName;

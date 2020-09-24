@@ -1,5 +1,6 @@
 package com.example.demo.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -8,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -24,7 +26,11 @@ public class ProductService {
 	/*
 	 * @Column(name = "categoryId") private ProductCategory categoryId;
 	 */
-	@Column(name = "categoryId")
+	/*
+	 * @OneToOne(targetEntity=ProductCategory.class,cascade=CascadeType.ALL)
+	 * it is working use better logic ;)
+	 * @JoinColumn(name="category_id",referencedColumnName="categoryId")
+	 */
 	private int categoryId;
 	
 	@Column(name = "productPrice")
@@ -33,7 +39,11 @@ public class ProductService {
 	/*
 	 * @Column(name = "sizeId") private ProductSize sizeId;
 	 */
-	@Column(name = "sizeId")
+	/*
+	 * @OneToOne(targetEntity=ProductSize.class,cascade=CascadeType.ALL)
+	 * it works use better logic:)
+	 * @JoinColumn(name="size_id",referencedColumnName="sizeId")
+	 */
 	private int sizeId;
 		
 	@Column(name = "gender")
@@ -78,14 +88,6 @@ public class ProductService {
 		return productPrice;
 	}
 
-	public int getCategoryId() {
-		return categoryId;
-	}
-
-	public void setCategoryId(int categoryId) {
-		this.categoryId = categoryId;
-	}
-
 	public void setProductPrice(double productPrice) {
 		this.productPrice = productPrice;
 	}
@@ -103,14 +105,6 @@ public class ProductService {
 		return gender;
 	}
 
-	public int getSizeId() {
-		return sizeId;
-	}
-
-	public void setSizeId(int sizeId) {
-		this.sizeId = sizeId;
-	}
-
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
@@ -121,6 +115,22 @@ public class ProductService {
 
 	public void setProductImages(String productImages) {
 		this.productImages = productImages;
+	}
+
+	public int getCategoryId() {
+		return categoryId;
+	}
+
+	public void setCategoryId(int categoryId) {
+		this.categoryId = categoryId;
+	}
+
+	public int getSizeId() {
+		return sizeId;
+	}
+
+	public void setSizeId(int sizeId) {
+		this.sizeId = sizeId;
 	}
 	
 	

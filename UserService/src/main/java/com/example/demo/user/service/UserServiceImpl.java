@@ -158,7 +158,7 @@ public class UserServiceImpl implements UserService {
 			  System.out.println("%%%%%%%%%%%%"+start+"%%%%%%%%%%");
 			  count=count-end;
 			  System.out.println("%%%%%%%%%%%%"+count+"%%%%%%%%%%");
-		  }while(count<0);
+		  }while(count>=0);
 		  
 		  users.stream().forEach(userDetails->{
 			  

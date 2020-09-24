@@ -14,7 +14,7 @@ pipeline{
 		stage('Image Creation'){
 			
 			steps{
-				sh 'docker build -t user-service .'
+				sh 'cd/UserService;docker build -t user-service .'
 			
 				}
 		

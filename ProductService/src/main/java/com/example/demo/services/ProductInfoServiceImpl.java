@@ -30,8 +30,8 @@ public class ProductInfoServiceImpl implements ProductInfoService {
 	public void addProduct(Product product) {
 		// TODO Auto-generated method stub
 		
-		  ProductSize size= sizeRepository.findBySizeValue(product.getSizeName());
-		  ProductCategory category = catRepository.getByCategoryName(product.getCategoryName());
+		  ProductSize size= sizeRepository.findBySizeValue(product.getSizeName());//new ProductSize();
+		  ProductCategory category =  catRepository.getByCategoryName(product.getCategoryName());//new ProductCategory();     //catRepository.getByCategoryName(product.getCategoryName());
 		  
 		  ProductService productDetails = new ProductService();
 		  productDetails.setProductName(product.getProductName());

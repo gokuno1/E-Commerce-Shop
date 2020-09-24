@@ -1,5 +1,6 @@
 package com.example.demo.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -9,6 +10,7 @@ import javax.persistence.Table;
 public class ProductSize {
 	
 	@Id
+	@Column(name = "sizeId")
 	private int sizeId;
 	
 	private String sizeName;
