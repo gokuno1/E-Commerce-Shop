@@ -32,4 +32,6 @@ public interface UserService {
 	public void scheduledUpdate();
 	
 	//Can add OTP methods
+	
+	public UserProfile updateUserName(UserProfile user);
 }

@@ -171,6 +171,18 @@ public class UserServiceImpl implements UserService {
 		
 	}
 
+	@Override
+	public UserProfile updateUserName(UserProfile user) {
+		// TODO Auto-generated method stub
+		UserProfile userUpdate= profileRepository.findByMobile(user.getMobile_no());
+		System.out.println("All details before update: "+ userUpdate.getEmail_id()+" "+userUpdate.getFirst_Name()+" "+userUpdate.getLast_Name()+" "+userUpdate.getMobile_no()+" "+userUpdate.getUser_id() );
+		userUpdate.setFirst_Name(user.getFirst_Name());
+		System.out.println("All details after update: "+ userUpdate.getEmail_id()+" "+userUpdate.getFirst_Name()+" "+userUpdate.getLast_Name()+" "+userUpdate.getMobile_no()+" "+userUpdate.getUser_id() );
+		profileRepository.save(userUpdate);
+		return userUpdate;
+	}
+
+
 	/*
 	 * @Override public List<UserProfile> updateProfileDetails(String emailId,
 	 * String fName, String lName, double mobileNo, int userId) {

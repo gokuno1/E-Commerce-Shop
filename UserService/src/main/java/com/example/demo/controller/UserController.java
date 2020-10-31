@@ -83,9 +83,11 @@ public class UserController {
 	}
 	
 	@PutMapping(value="/updateProfile")
-	public void updateProfile()
+	public UserProfile updateProfile(@RequestBody UserProfile user)
 	{
-		service.scheduledUpdate();
+		UserProfile userProfile = service.updateUserName(user);
+		return userProfile;
+		
 	}
 	
 }

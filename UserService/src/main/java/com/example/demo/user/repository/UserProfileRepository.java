@@ -16,4 +16,7 @@ public interface UserProfileRepository extends CrudRepository<UserProfile, Integ
 	@Modifying
 	@Query(value="update userprofile set email_id=?2, first_name=?3, last_name=?4, mobile_no=?5 where user_id=?1",nativeQuery=true)
 	public void updateUserProfile(int userId, String emailId, String firstName, String lastName, double mobileNo);
+	
+	@Query(value="select * from userdetails where mobile_no= ?1",nativeQuery = true)
+	public UserProfile findByMobile(double mobileNo);
 }
