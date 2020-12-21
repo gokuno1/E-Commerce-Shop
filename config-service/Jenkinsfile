@@ -1,0 +1,74 @@
+pipeline
+{
+ agent { label 'Node_12' }
+ tools { 
+        maven 'Maven' 
+        jdk 'Java1.8'
+    }
+ stages 
+ {
+  stage('checkout')
+  {
+    steps
+    {
+      checkout scm
+      }
+    }
+   stage('build')
+      {
+          steps
+          {
+        
+            sh 'cd trunk/oneutcl-common; mvn clean install'
+                 sh 'cd trunk/config-service; mvn clean install -Dmaven.test.skip=true'
+           }
+         }
+    stage('containerize')
+       {
+      steps
+        {
+            sh 'cd trunk/config-service; sudo docker build -t config-service .'
+            sh 'sudo docker login -u admin -p admin123 10.17.24.177:8123; sudo docker tag config-service 10.17.24.177:8123/config-service; sudo docker push 10.17.24.177:8123/config-service'
+          }
+        }
+     stage('Deployment')
+      {
+        steps
+          {
+		        script 
+		          {
+					
+				   try {
+					     	sh 'sudo docker service rm $(sudo docker service ls -q -f name=config-service)'
+					}
+			  	catch (Exception e) {
+						sh 'echo "Container is not running!!!"'
+					}
+				}
+		     	sh 'echo "starting the application..."'
+                sh 'sudo docker service create --network utcl-ms-overlay --env ipAddress=10.17.24.12 --with-registry-auth -p 8888:8888 -p 8881:8881 -e JAVA_OPTIONS=\'-Xms256m -Xmx512m\' --name config-service 10.17.24.177:8123/config-service'  
+              }
+
+            }
+        stage('QA Deployment') 
+     {
+      steps {
+      script {
+      	try {
+			timeout(time:4, unit:'HOURS') {
+				input message:'Push image to QA ?', submitter: 'riya'
+			}
+			echo "pushing image to QA repository"
+			echo "version no ${currentBuild.number}"
+			sh "sudo docker login -u admin -p admin123 10.17.24.177:8124; sudo docker tag config-service 10.17.24.177:8124/config-service:${currentBuild.number}; sudo docker push 10.17.24.177:8124/config-service:${currentBuild.number}"
+			sh "sudo docker login -u admin -p admin123 10.17.24.177:8124; sudo docker tag config-service 10.17.24.177:8124/config-service:latest; sudo docker push 10.17.24.177:8124/config-service:latest"
+			} catch (Exception e) {
+			echo "Request timeout! Image was not pushed to QA."
+			}
+			}
+		}
+	}
+
+
+     }
+}    

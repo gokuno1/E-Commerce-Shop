@@ -33,5 +33,5 @@ public interface UserService {
 	
 	//Can add OTP methods
 	
-	public UserProfile updateUserName(UserProfile user);
+	public UserProfile updateUserName(double user, String name);
 }

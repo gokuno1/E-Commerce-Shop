@@ -8,4 +8,5 @@ public interface OrderInfoService {
 	public OrderService getbyOrderId(int orderId);
 	public void deletebyid(int orderid);
 	public OrderService updateOrder(int orderId, OrderService order);
+	public String getNameFromList(int id);
 }

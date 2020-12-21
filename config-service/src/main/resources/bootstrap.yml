@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: config-service
+  cloud:
+    config:
+      server:
+        bootstrap: true
+        git:
+          uri: https://gitlab.birlasoft.com/utcl/oneutcl.git
+          skip-ssl-validation: true
+          username: aniketb3
+          password: Deskharoldpotter2020@123
+          default-label: development
+          search-paths:
+            - trunk/service-configuration-files/app-*
+          timeout: 200000

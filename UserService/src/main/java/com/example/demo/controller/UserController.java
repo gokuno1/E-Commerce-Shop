@@ -83,9 +83,9 @@ public class UserController {
 	}
 	
 	@PutMapping(value="/updateProfile")
-	public UserProfile updateProfile(@RequestBody UserProfile user)
+	public UserProfile updateProfile(@RequestParam double user, @RequestParam String name)
 	{
-		UserProfile userProfile = service.updateUserName(user);
+		UserProfile userProfile = service.updateUserName(user,name);
 		return userProfile;
 		
 	}
